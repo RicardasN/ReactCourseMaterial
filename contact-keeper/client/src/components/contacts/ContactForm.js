@@ -1,8 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
+
+  const { addContact, current, clearCurrent, updateContact } = contactContext;
+
+  //mimicking component did mount, the idea is if contactContext or current changes - update the form
+  useEffect(() => {
+    if (current) {
+      setContact(current);
+    } else {
+      setContact({ name: '', email: '', phone: '', type: 'personal' });
+    }
+  }, [contactContext, current]);
 
   const [contact, setContact] = useState({
     name: '',
@@ -18,16 +29,26 @@ const ContactForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(contact);
-    //send add contact request
-    contactContext.addContact(contact);
+    if (!current) {
+      //send add contact request
+      addContact(contact);
+    } else {
+      //send a put/patch request
+      updateContact(contact);
+    }
     //reset the form
     setContact({ name: '', email: '', phone: '', type: 'personal' });
   };
 
+  const clearAll = () => {
+    clearCurrent();
+  };
+
   return (
-    <form>
-      <h2 className='text-primary'>Add Contact</h2>
+    <form onSubmit={onSubmit}>
+      <h2 className='text-primary'>
+        {current ? 'Edit Contact' : 'Add Contact'}
+      </h2>
       <input
         type='text'
         placeholder='Name'
@@ -69,10 +90,17 @@ const ContactForm = () => {
       <div>
         <input
           type='submit'
-          value='Add Contact'
+          value={current ? 'Update Contact' : 'Add Contact'}
           className='btn btn-primary btn-block'
         />
       </div>
+      {current && (
+        <div>
+          <button className='btn btn-light btn-block' onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
     </form>
   );
 };
