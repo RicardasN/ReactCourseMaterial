@@ -9,7 +9,7 @@ const ContactFilter = () => {
 
   useEffect(() => {
     if (!filtered) {
-      text.current.value = '';
+      text.current.valkue = '';
     }
   });
 
