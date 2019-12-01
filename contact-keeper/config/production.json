@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://reactCourse123:admin@contact-keeper-jrkxk.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "JsonWebTokenPaslaptis"
+}
