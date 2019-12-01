@@ -13,7 +13,8 @@ const Register = props => {
     if (isAuthenticated) {
       props.history.push('/');
     }
-    if (error !== null) {
+    console.log(error);
+    if (error !== null && typeof error != 'undefined') {
       setAlert(error, 'danger');
       clearErrors();
     }
