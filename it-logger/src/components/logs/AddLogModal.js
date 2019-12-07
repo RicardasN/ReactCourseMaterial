@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import TechSelectOptions from '../techs/TechSelectOptions';
 
 const AddLogModal = ({ addLog }) => {
   const [message, setMessage] = useState('');
@@ -16,11 +17,11 @@ const AddLogModal = ({ addLog }) => {
       const newLog = { message, attention, tech, date: new Date() };
       addLog(newLog);
       M.toast({ html: `Log added by ${tech}` });
+      //Clear fields
+      setMessage('');
+      setTech('');
+      setAttention(false);
     }
-    //Clear fields
-    setMessage('');
-    setTech('');
-    setAttention(false);
   };
 
   return (
@@ -46,13 +47,12 @@ const AddLogModal = ({ addLog }) => {
               name='tech'
               value={tech}
               onChange={e => setTech(e.target.value)}
+              className='browser-default'
             >
               <option value='' disabled>
                 Select Technician
               </option>
-              <option value='John Doe'>John Doe</option>
-              <option value='Samantha Reed'>Samantha Reed</option>
-              <option value='Henry Wilson'>Henry Wilson</option>
+              <TechSelectOptions />
             </select>
           </div>
         </div>
