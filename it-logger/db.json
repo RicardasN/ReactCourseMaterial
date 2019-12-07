@@ -1,13 +1,6 @@
 {
   "logs": [
     {
-      "message": "Changed network card in server 007",
-      "attention": false,
-      "tech": "Sam Smith",
-      "date": "2019-05-31T15:46:10.179Z",
-      "id": 1
-    },
-    {
       "id": 2,
       "message": "Fixed hard drive on workstation 002",
       "attention": false,
@@ -27,6 +20,20 @@
       "attention": false,
       "tech": "Sara Wilson",
       "date": "2019-05-31T19:57:35.544Z"
+    },
+    {
+      "message": "Changed Network Card on server 007",
+      "attention": false,
+      "tech": "Samantha Reed",
+      "date": "2019-12-07T15:17:40.452Z",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "message": "Fixed socket port on server 005 stopped working",
+      "attention": false,
+      "tech": "Samantha Reed",
+      "date": "2019-12-07T18:07:11.799Z"
     }
   ],
   "techs": [
